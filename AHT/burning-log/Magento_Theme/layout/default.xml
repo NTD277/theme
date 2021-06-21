@@ -1,0 +1,43 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="logo">
+           <arguments>
+               <argument name="logo_file" xsi:type="string">images/logo.png</argument>
+               <argument name="logo_img_width" xsi:type="number">300</argument>
+               <argument name="logo_img_height" xsi:type="number">300</argument>
+           </arguments>
+        </referenceBlock>
+        <referenceBlock remove="true" name="header.links"/>
+        <referenceBlock remove="true" name="productCount"/>
+        <referenceBlock remove="true" name="footer_links"/>
+        <referenceBlock remove="true" name="skip_to_content"/>
+        <referenceBlock remove="true" name="copyright"/>
+        <!-- <referenceBlock remove="true" name="skip_to_content"/>
+        <referenceBlock remove="true" name="store_language"/>
+        
+        <referenceBlock remove="true" name="copyright"/> -->
+        <!-- <referenceBlock remove="true" name="header.panel.wrapper"/> -->
+        <referenceContainer name="header.panel" label="Page Header Panel" htmlTag="div" htmlClass="panel header">
+            <block class="Magento\Framework\View\Element\Template" name="header.top" template="Magento_Theme::header/header-top.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="footer" label="Page Footer" htmlTag="div" htmlClass="footer content">
+            <container name="showroom" as="showroom" htmlTag="div" htmlClass="showroom">
+                <block class="Magento\Framework\View\Element\Template" name="outdoor.elegance" template="Magento_Theme::footer/showroom/showroom.phtml"/>
+                <block class="Magento\Framework\View\Element\Template" name="canberra" template="Magento_Theme::footer/showroom/canberra.phtml"/>
+                <block class="Magento\Framework\View\Element\Template" name="webstore.logo" template="Magento_Theme::footer/showroom/webstore-logo.phtml"/>
+            </container>
+            <container name="banner" as="banner" htmlTag="div" htmlClass="banner">
+                <block class="Magento\Framework\View\Element\Template" name="banner.block" template="Magento_Theme::footer/banner/banner.phtml"/>
+            </container>
+            <container name="top" as="top" htmlTag="div" htmlClass="top">
+                <block class="Magento\Framework\View\Element\Template" name="top.block" template="Magento_Theme::footer/top/top.phtml"/>
+            </container>
+            <container name="footer.middle" as="footer.middle" htmlTag="div" htmlClass="middle">
+                <block class="Magento\Framework\View\Element\Template" name="categories.block" template="Magento_Theme::footer/middle/categories.phtml"/>
+                <block class="Magento\Framework\View\Element\Template" name="why_burning_log.block" template="Magento_Theme::footer/middle/why_burning_log.phtml"/>
+                <block class="Magento\Framework\View\Element\Template" name="our_policies.block" template="Magento_Theme::footer/middle/our_policies.phtml"/>
+            </container>
+            <!-- <block class="Magento\Framework\View\Element\Template" name="footer.block" template="Magento_Theme::footer.phtml"/> -->
+        </referenceContainer>
+    </body>
+</page>    

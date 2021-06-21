@@ -1,0 +1,107 @@
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    h1 {
+        .lib-css(font-size, @h1__font-size-desktop);
+        .lib-css(margin-bottom, @h1__margin-bottom__desktop);
+    }
+}
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .items {
+        .lib-list-reset-styles();
+    }
+    p{
+        .lib-typography(
+            @_font-size: @font-size13,
+            @_color: @color-333,
+            @_font-family: @font-roboto-regular,
+            @_font-weight: @font-weight-400,
+            @_line-height: @line-height20,
+        )
+    }
+}
+.lib-font-face (
+    @family-name: @font-family-opensans__base,
+    @font-path: '@{baseDir}fonts/OpenSans-Bold',
+    @font-style: normal
+);
+.lib-font-face (
+    @family-name: @font-family-roboto__base,
+    @font-path: '@{baseDir}fonts/Roboto-Medium',
+    @font-weight: 500,
+    @font-style: normal
+);
+.lib-font-face (
+    @family-name: @font-family-lora__base,
+    @font-path: '@{baseDir}fonts/Lora-Bold',
+    @font-weight: 700,
+    @font-style: normal
+);
+.lib-font-face (
+    @family-name: @font-market-web,
+    @font-path: '@{baseDir}fonts/MarketWeb',
+    @font-weight: bold,
+    @font-style: normal
+);
+.lib-font-face (
+    @family-name: @font-family-helvetica__base,
+    @font-path: '@{baseDir}fonts/helvetica-light',
+    @font-weight: 400,
+    @font-style: normal
+);
+
+.lib-font-face (
+    @family-name: @font-family-sun-valley__base,
+    @font-path: '@{baseDir}fonts/SunValley',
+    @font-style: normal,
+);
+.lib-font-face (
+    @family-name: @font-family-roboto__base,
+    @font-path: '@{baseDir}fonts/Roboto-Bold',
+    @font-weight: 700,
+    @font-style: normal
+);
+.lib-font-face (
+    @family-name: @font-family-lora__base,
+    @font-path: '@{baseDir}fonts/Lora-Regular',
+    @font-weight: 400,
+    @font-style: normal
+);
+.lib-font-face (
+    @family-name: @font-family-roboto__base,
+    @font-path: '@{baseDir}fonts/Roboto-Regular',
+    @font-weight: 400,
+    @font-style: normal
+);
+.lib-font-face (
+    @family-name:@font-family-market__base,
+    @font-path: '@{baseDir}fonts/market-regular',
+    @font-weight: bold,
+    @font-style: normal
+);
+
+.lib-typography-letter(
+    @_font-size: @font-size__base,
+    @_color: @text__color,
+    @_font-family: @font-family__base,
+    @_font-weight: @font-weight__regular,
+    @_line-height: @line-height__base,
+    @_font-style: @font-style__base
+){
+    .lib-typography(
+        @_font-size: @_font-size,
+        @_color: @_color,
+        @_font-family: @_font-family,
+        @_font-weight: @_font-weight,
+        @_line-height: @_line-height,
+        @_font-style: @_font-style
+    );
+    letter-spacing: 0.025em;
+}

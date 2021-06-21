@@ -1,0 +1,379 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@legend-border-bottom: 1px solid @color-gray-light6;
+@form-field__vertical-indent__desktop: 29px;
+@form-calendar-icon__color: @primary__color;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .fieldset {
+        .lib-form-fieldset();
+
+        &:last-child {
+            margin-bottom: @indent__base;
+        }
+
+        > .field,
+        > .fields > .field {
+            .lib-form-field();
+            &.no-label {
+                > .label {
+                    .lib-visually-hidden();
+                }
+            }
+
+            &.choice {
+                .label {
+                    display: inline;
+                    font-weight: normal;
+                    margin: 0;
+                }
+            }
+
+            .label {
+                .column:not(.main) & {
+                    font-weight: normal;
+                }
+            }
+
+            .field.choice {
+                margin-bottom: @indent__s;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .legend + .fieldset,
+    .legend + div {
+        clear: both;
+    }
+
+    .legend {
+        > span {
+            margin-right: @indent__xs;
+        }
+    }
+
+    fieldset.field {
+        border: 0;
+        padding: 0;
+    }
+
+    .field {
+        &.date {
+            .time-picker {
+                display: inline-block;
+                margin-top: @indent__s;
+                white-space: nowrap;
+            }
+        }
+
+        .message {
+            &.warning {
+                margin-top: @indent__s;
+            }
+        }
+    }
+
+    .select-styling() {
+        .lib-css(appearance, none, 1);
+        appearance: none;
+        background-size: 30px 60px;
+        text-indent: .01em;
+        text-overflow: '';
+
+        &::-ms-expand {
+            display: none;
+        }
+    }
+
+    select {
+        .select-styling();
+    }
+
+    select.admin__control-multiselect {
+        height: auto;
+    }
+
+    .field-error,
+    div.mage-error[generated] {
+        margin-top: 7px;
+    }
+
+    .field-error {
+        .lib-form-validation-note();
+    }
+
+    .product-options-wrapper {
+        .date {
+            &.required {
+                div[for*='options'] {
+                    &.mage-error {
+                        display: none !important;
+                    }
+                }
+            }
+        }
+    }
+
+    //  TEMP
+
+    .field .tooltip {
+        .lib-tooltip(right);
+        .tooltip-content {
+            min-width: 200px;
+            white-space: normal;
+        }
+    }
+
+    input:focus ~ .tooltip .tooltip-content,
+    select:focus ~ .tooltip .tooltip-content {
+        display: block;
+    }
+
+    ._has-datepicker {
+        ~ .ui-datepicker-trigger {
+            .lib-button-reset();
+            .lib-icon-font(
+            @_icon-font-content: @icon-calendar,
+            @_icon-font-color: @primary__color__lighter,
+            @_icon-font-size: @icon-calendar__font-size,
+            @_icon-font-line-height: @icon-calendar__font-size,
+            @_icon-font-display: block,
+            @_icon-font-text-hide: true
+            );
+            display: inline-block;
+            margin-top: -4px;
+            vertical-align: middle;
+
+            &:focus {
+                box-shadow: none;
+                outline: 0;
+            }
+        }
+    }
+
+    .field.date,
+    .field-dob {
+        ._has-datepicker {
+            &:extend(.abs-field-date-input all);
+        }
+    }
+
+    //
+    //  Sidebar forms
+    //  ---------------------------------------------
+
+    .sidebar {
+        .fieldset {
+            margin: 0;
+
+            > .field:not(.choice) >,
+            .fields > .field {
+                &:not(:last-child) {
+                    margin: 0 0 @form-field__vertical-indent;
+                }
+
+                .label {
+                    margin: 0 0 4px;
+                    padding: 0 0 @indent__xs;
+                    text-align: left;
+                    width: 100%;
+                }
+
+                .control {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .legend {
+        .lib-css(border-bottom, @legend-border-bottom);
+    }
+
+    .quantity{
+        .lib-css(display,flex);
+    }
+    input{
+        &.input-adjust{
+            .lib-css(width,@size-40);
+            .lib-css(height,@size-40);
+            .lib-css(text-align, center);
+        }
+        &:not([disabled]):focus {
+            .lib-css(box-shadow, none);
+        }
+        &[type="checkbox"]{
+            .lib-css(visibility, hidden);
+            &:checked + label:before {
+             .lib-css(background,@color-white);
+             .lib-css(color,@color-checkbox);
+            }
+            &:disabled + label:before {
+                .lib-css(background,@color-checkbox-disable);
+               }
+            &:checked:disabled + label:before {
+                .lib-css(background,@color-checkbox-disable);
+                .lib-css(color,@color-disable);
+            }
+            &+label:before{
+                .lib-css(content,"\2714");
+                .lib-css(border,@size-1px solid @color-boder-check);
+                .lib-css(display,inline-block);
+                .lib-css(width,@size-20);
+                .lib-css(height,@size-20);
+                .lib-css(text-align,center);
+                .lib-css(margin-right,1%);
+                .lib-css(vertical-align,bottom);
+                .lib-css(color,transparent)
+            }
+            &+label{
+                .lib-css(display,block);
+                .lib-css(cursor,pointer);
+            }
+        }
+        &[type="radio"] {
+            // .lib-css(visibility, hidden);
+            // .lib-css(position,absolute);
+            &:checked+label:after{
+                .lib-css(background, @color-checkbox);
+                .lib-css(content, "");
+                .lib-css(text-align, center);
+                .lib-css(width, 20px);
+                .lib-css(height, 20px);
+                .lib-css(position, absolute);
+                .lib-css(left, 0);
+                .lib-css(margin, 7px);
+                .lib-css(border-radius, 50%);
+            }
+            &:disabled + label:after {
+                .lib-css(background,@color-checkbox-disable);
+               }
+            &:checked:disabled + label:after {
+                .lib-css(background,@color-checkbox-disable);
+                .lib-css(color,@color-disable);
+            }
+            &+label:before {
+                .lib-css(border-radius, 50%);
+                .lib-css(border, @size-1px solid @color-boder-check);
+                .lib-css(content, "");
+                .lib-css(display, inline-block);
+                .lib-css(margin, 0 10px -6px 0);
+                .lib-css(padding, 0);
+                .lib-css(vertical-align, top);
+                .lib-css(width, @size-20);
+                .lib-css(height, @size-20);
+            }
+        }
+        &[type=text]{
+            .lib-css(box-sizing, border-box);
+            .lib-css(width,@size-input-text);
+            .lib-css(height,@size-40);
+            .lib-css(font-size, @font-size13);
+            .lib-css(line-height, @size-30px);
+            .lib-css(color, @color-333);
+            .lib-css(font-family, @font-roboto-regular);
+            .lib-css(text-align, left);
+            .lib-css(padding, 0 @font-size13);
+    
+            &:not([disabled]):focus,
+            &:focus {
+                .lib-css(box-shadow, none);
+            }
+        }
+    }
+    
+    
+    .la-times{
+        .lib-css(width, @width-14px);
+        .lib-css(height, @height-14px);
+    }
+
+    .la-facebook-f,
+    .la-instagram,
+    .la-twitter{
+        .lib-css(font-size, @font-size18);
+        .lib-css(line-height, @line-height30);
+        .lib-css(color, @color-424242);
+        &:hover{
+            .lib-css(color, @color-000);
+        }
+    }
+    .row {
+        .lib-css(display, flex);
+        
+        .col {
+            .lib-css(position, relative);
+
+            .col-content {
+                .lib-css(text-align, center);
+                .lib-css(position, absolute);
+                .lib-css(top, 50%);
+                .lib-css(left, 50%);
+                .lib-css(width, 100%);
+                .lib-css(transform, translate(-50%, -50%));
+                .lib-css(text-transform, uppercase);
+
+                a {
+                    .lib-css(font-family, @font-lora-bold);
+                    .lib-css(font-size, @font-size15);
+                    .lib-css(margin, auto);
+                    .lib-css(color, @color-white);
+                    &:hover{
+                        .lib-css(text-decoration, none);
+                    }
+                }
+            }
+        }
+    }
+
+    .banner-burning-one {
+        .lib-css(width, 330px);
+        .lib-css(height, 280px);
+
+        .banner-img {
+            .lib-css(position, relative);
+            .lib-css(width, 100%);
+        }
+    }
+
+    .button-banner {
+        .lib-button(@_button-background: @color-333,
+            @_button-color: @color-white,
+            @_button-font-family: @font-roboto-bold,
+            @_button-background-hover: @color-3b,
+            @_button-color-hover: @color-white,
+            @_button-background-active: @color-3b,
+            @_button-color-active: @color-white,
+            @_button-border: @size-2px solid @color-white,
+            @_button-border-hover: @size-2px solid @color-white);
+        .lib-css(width, 250px);
+        .lib-css(height, 50px);
+        .lib-css(padding, 7px 0);
+        .lib-css(position, absolute);
+        .lib-css(transform, translate(-50%, -50%));
+        .lib-css(top, 50%);
+        .lib-css(left, 50%);
+        .lib-css(display, flex);
+    }
+}

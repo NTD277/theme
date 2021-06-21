@@ -1,0 +1,62 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Newsletter\Block\Subscribe $block */
+?>
+<div class="block newsletter">
+    <div class="title"><p><?= $block->escapeHtml(__('Newsletter')) ?></p></div>
+    <div class="text"><p><?= $block->escapeHtml(__('Subscribe to our newsletter for the latest
+news and updates')) ?></p></div>
+    <div class="content">
+        <form class="form subscribe"
+            novalidate
+            action="<?= $block->escapeUrl($block->getFormActionUrl()) ?>"
+            method="post"
+            data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+            id="newsletter-validate-detail">
+            <div class="field newsletter">
+                <div class="control">
+                    <label for="newsletter">
+                        <span class="label">
+                            <?= $block->escapeHtml(__('Enter your email address')) ?>
+                        </span>
+                        <input name="email" type="email" id="newsletter"
+                               placeholder="<?= $block->escapeHtml(__('Enter your email address')) ?>"
+                               data-mage-init='{"mage/trim-input":{}}'
+                               data-validate="{required:true, 'validate-email':true}"
+                        />
+                    </label>
+                </div>
+            </div>
+            <!-- <div class="actions">
+                <button class="action subscribe primary"
+                        title="<?= $block->escapeHtmlAttr(__('Subscribe')) ?>"
+                        type="submit"
+                        aria-label="Subscribe">
+                    <span><?= $block->escapeHtml(__('Subscribe')) ?></span>
+                </button>
+            </div> -->
+        </form>
+    </div>
+    <div class="social">
+        <ul>
+        <li><a class="facebook" href="#"><span class="label">Facebook</span></a></li>
+        <li><a class="instagram" href="#"><span class="label">Instagram</span></a></li>
+        <li><a class="twitter" href="#"><span class="label">Twitter</span></a></li>
+        <li><a class="youtube" href="#"><span class="label">Youtube</span></a></li>
+        <li><a class="pinterest" href="#"><span class="label">Pinterest</span></a></li>
+        </ul>
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Customer/js/block-submit-on-send": {
+                "formId": "newsletter-validate-detail"
+            }
+        }
+    }
+</script>
